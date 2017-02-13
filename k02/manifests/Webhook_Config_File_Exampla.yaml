@@ -1,0 +1,25 @@
+# Mode Webhook requires a file for HTTP configuration, specify by the --authorization-webhook-config-file=SOME_FILENAME flag.
+# The configuration file uses the kubeconfig file format. Within the file “users” refers to the API Server webhook and “clusters” refers to the remote service.
+# A configuration example which uses HTTPS client auth:
+
+# clusters refers to the remote service.
+clusters:
+  - name: name-of-remote-authz-service
+    cluster:
+      certificate-authority: /path/to/ca.pem      # CA for verifying the remote service.
+      server: https://authz.example.com/authorize # URL of remote service to query. Must use 'https'.
+
+# users refers to the API Server's webhook configuration.
+users:
+  - name: name-of-api-server
+    user:
+      client-certificate: /path/to/cert.pem # cert for the webhook plugin to use
+      client-key: /path/to/key.pem          # key matching the cert
+
+# kubeconfig files require a context. Provide one for the API Server.
+current-context: webhook
+contexts:
+- context:
+    cluster: name-of-remote-authz-service
+    user: name-of-api-sever
+  name: webhook
