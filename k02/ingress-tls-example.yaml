@@ -1,0 +1,19 @@
+  apiVersion: extensions/v1beta1
+  kind: Ingress
+  metadata:
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    name: croc-hunter-tls
+  spec:
+    rules:
+      - host: croc-hunter-tls.ingress.k8s.estrado.io
+        http:
+          paths:
+            - backend:
+                serviceName: croc-hunter-s1
+                servicePort: 80
+              path: /
+    tls:
+        - hosts:
+            - croc-hunter-tls.ingress.k8s.estrado.io
+          secretName: croc-hunter-tls

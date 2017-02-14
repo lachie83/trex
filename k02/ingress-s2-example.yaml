@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: croc-hunter-s2
+  labels:
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: croc-hunter-s2
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: croc-hunter-s2
+  labels:
+    app: croc-hunter-s2
+spec:
+  containers:
+    - name: croc-hunter
+      image: quay.io/lachie83/croc-hunter:v2
+      ports:
+        - containerPort: 8080
