@@ -1,0 +1,21 @@
+# When faced with an authorization decision, the API Server POSTs a JSON serialized api.authorization.v1beta1.SubjectAccessReview object describing the action. This object contains fields describing the user attempting to make the request, and either details about the resource being accessed or requests attributes.
+
+# Note that webhook API objects are subject to the same versioning compatibility rules as other Kubernetes API objects. Implementers should be aware of looser compatibility promises for beta objects and check the “apiVersion” field of the request to ensure correct deserialization. Additionally, the API Server must enable the authorization.k8s.io/v1beta1 API extensions group (--runtime-config=authorization.k8s.io/v1beta1=true).
+
+{
+  "apiVersion": "authorization.k8s.io/v1beta1",
+  "kind": "SubjectAccessReview",
+  "spec": {
+    "resourceAttributes": {
+      "namespace": "kittensandponies",
+      "verb": "GET",
+      "group": "unicorn.example.org",
+      "resource": "pods"
+    },
+    "user": "jane",
+    "group": [
+      "group1",
+      "group2"
+    ]
+  }
+}

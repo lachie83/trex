@@ -1,0 +1,13 @@
+# Cluster Roles example
+# ClusterRoles hold the same information as a Role but can apply to any namespace as well as non-namespaced resources (such as Nodes, PersistentVolume, etc.). The following ClusterRole can grant permissions to read secrets in any namespace.
+
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1alpha1
+metadata:
+  # "namespace" omitted since ClusterRoles are not namespaced.
+  name: secret-reader
+rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "watch", "list"]
+    nonResourceURLs: []
