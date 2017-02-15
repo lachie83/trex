@@ -1,0 +1,9 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: croc-hunter-pdb
+spec:
+  selector:
+    matchLabels:
+      app: croc-hunter
+  minAvailable: 3

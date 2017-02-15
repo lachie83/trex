@@ -1,0 +1,8 @@
+{
+  "apiVersion": "policy/v1beta1",
+  "kind": "Eviction",
+  "metadata": {
+    "name": "croc-hunter-838257170-9c7x2",
+    "namespace": "default"
+  }
+}
