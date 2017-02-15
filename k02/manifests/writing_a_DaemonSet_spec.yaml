@@ -1,0 +1,47 @@
+# DaemonSet needs apiVersion, kind, and metadata fields
+
+# Running Pods on Only Some Nodes
+# If you specify a .spec.template.spec.nodeSelector, then the DaemonSet controller 
+# will create pods on nodes which match that node selector. If you specify a 
+# scheduler.alpha.kubernetes.io/affinity annotation in .spec.template.metadata.annotations 
+# then DaemonSet controller will create pods on nodes which match that node affinity.
+# If you do not specify a .spec.template.spec.nodeSelector nor node affinity 
+# then the DaemonSet controller will create pods on all nodes.
+
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: lekube
+  namespace: default
+spec:
+# The spec.selector is an object consisting of two fields: matchLabels and matchExpressions
+# If the .spec.selector is specified, it must match the .spec.template.metadata.labels. 
+# If not specified, they are defaulted to be equal. 
+# Config with these not matching will be rejected by the API.
+  selector:
+    matchLabels:
+      app: lekube
+# The .spec.template is the only required field of the .spec
+  template:
+    metadata:
+      name: lekube
+      labels:
+        app: lekube
+    spec:
+      serviceAccount: lekube
+      containers:
+      - name: lekube
+        image: jsingerdumars/lekube:latest
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: dockersocket
+          mountPath: /run/docker.sock
+        env:
+        - name: LOGENTRIES_TOKEN
+          value: xxxxxxxxxx
+      volumes:
+        - name: dockersocket
+          hostPath:
+            path: /var/run/docker.sock
