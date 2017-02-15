@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: croc-hunter
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: croc-hunter.ingress.k8s.estrado.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: croc-hunter-s1
+          servicePort: 80
