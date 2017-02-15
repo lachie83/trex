@@ -1,0 +1,10 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  annotations:
+    net.beta.kubernetes.io/network-policy: |
+      {
+        "ingress": {
+          "isolation": "DefaultDeny"
+        }
+      }
