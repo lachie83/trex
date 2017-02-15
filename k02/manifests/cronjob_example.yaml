@@ -1,0 +1,30 @@
+# * * * * * *
+# | | | | | | 
+# | | | | | +-- Year              (range: 1900-3000)
+# | | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)
+# | | | +------ Month of the Year (range: 1-12)
+# | | +-------- Day of the Month  (range: 1-31)
+# | +---------- Hour              (range: 0-23)
+# +------------ Minute            (range: 0-59)
+
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  # Uses standard crontab format 
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+          restartPolicy: OnFailure
+
+# kubectl get cronjob hello
