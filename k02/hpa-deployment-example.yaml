@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: croc-hunter
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: croc-hunter
+  template:
+    metadata:
+      labels:
+        app: croc-hunter
+    spec:
+      containers:
+        - name: croc-hunter
+          image: quay.io/lachie83/croc-hunter:v1
+          ports:
+            - containerPort: 8080
