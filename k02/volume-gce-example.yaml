@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+  - image: gcr.io/google_containers/test-webserver
+    name: test-container
+    volumeMounts:
+    - mountPath: /test-pd
+      name: test-volume
+  volumes:
+  - name: test-volume
+    # This GCE PD must already exist.
+    gcePersistentDisk:
+      # must be the name of the persistent disk, created in advance
+      pdName: my-data-disk
+      fsType: ext4

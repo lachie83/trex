@@ -4,7 +4,7 @@ metadata:
   name: slow
 provisioner: kubernetes.io/aws-ebs
 parameters:
-  ## 	Select from io1, gp2, sc1, st1. The default is gp2
+  ## Select from io1, gp2, sc1, st1. The default is gp2
   type: io1 
   ## AWS zone. If not specified, the zone is randomly selected from zones available in the
   ## region.
