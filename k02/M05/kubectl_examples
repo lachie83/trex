@@ -1,0 +1,47 @@
+kubectl run nginx --image=nginx --replicas=1
+kubectl expose deployment nginx --port=80 --target-port=8000
+kubectl annotate deployment nginx key='value'
+kubectl autoscale deployment nginx --min=3 --max=5 --cpu-percent=20
+kubectl create -f <filename>
+kubectl create -f .
+kubectl delete -f <filename>
+kubectl delete --all
+kubectl delete -f .
+kubectl edit deployment nginx
+kubectl get pods -o wide
+kubectl get pods,svc,ep
+kubectl get pod -o yaml
+kubectl label pods nginx unhealthy=true
+kubectl label pods --all status=unhealthy
+kubectl label pods nginx unhealthy
+kubectl patch deployment nginx -p '{"spec":{"containers":[{"name":"nginx","image":"new image"}]}}'
+kubectl patch deployment nginx --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/image", "value":"new image"}]'
+kubectl replace -f ./pod.json
+kubectl rolling-update frontend-v1 frontend-v2 --image=image:v2
+kubectl rolling-update frontend-v1 frontend-v2 --rollback
+kubectl rollout status deploy/nginx
+kubectl rollout history deploy/nginx
+kubectl rollout undo deploy/nginx --to-revision=1
+kubectl scale --replicas=1 deployment/nginx
+kubectl set image deployment/nginx nginx=nginx:1.9.1
+kubectl set resources deployment nginx --limits=cpu=0,memory=0 --requests=cpu=0,memory=0
+kubectl apply -f ./pod.json
+kubectl attach nginx
+kubectl attach nginx -i -t
+kubectl cp /tmp/foo <some-namespace>/<some-pod>:/tmp/bar
+Kubectl describe deploy/nginx
+kubectl exec -it nginx /bin/sh
+kubectl logs nginx
+kubectl logs -p nginx
+kubectl logs -f nginx
+kubectl logs --tail=20 nginx
+kubectl logs --since=1h nginx
+kubectl port-forward mypod 5000 6000
+kubectl port-forward mypod 5000:8080 6000:8081
+kubectl proxy --port=8080
+kubectl top pod
+kubectl top node
+kubectl cluster-info dump
+kubectl taint nodes foo dedicated=special-user:NoSchedule
+kubectl version
+kubectl version --client

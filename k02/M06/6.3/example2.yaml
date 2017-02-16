@@ -1,0 +1,12 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: lekube
+  labels:
+    name: lekube
+spec:
+  containers:
+    - name: nginx
+      image: jsingerdumars/lekube:latest
+      ports:
+        - containerPort: 80
