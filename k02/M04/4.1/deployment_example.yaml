@@ -4,6 +4,12 @@ metadata:
   name: nginx-deployment
 spec:
   replicas: 3
+	# progressDeadlineSeconds: 10
+	strategy:
+	# maxUnavailable: 0
+	# maxSurge: 3
+	# type: Recreate
+	type: RollingUpdate
   template:
     metadata:
       labels:
