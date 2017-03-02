@@ -9,7 +9,7 @@ spec:
   # maxUnavailable: 0
   # maxSurge: 3
   # type: Recreate
-  type: RollingUpdate
+    type: RollingUpdate
   template:
     metadata:
       labels:
