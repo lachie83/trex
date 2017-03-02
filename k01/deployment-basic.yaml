@@ -4,11 +4,7 @@ metadata:
   name: croc-hunter
 spec:
   replicas: 3
-  # progressDeadlineSeconds: 10
   strategy:
-    # maxUnavailable: 0
-    # maxSurge: 3
-    # type: Recreate
     type: RollingUpdate
   selector:
     matchLabels:
