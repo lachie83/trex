@@ -5,6 +5,9 @@ metadata:
 spec:
   replicas: 3
   strategy:
+		# maxUnavailable: 0
+		# maxSurge: 3
+		# type: Recreate
     type: RollingUpdate
   selector:
     matchLabels:
