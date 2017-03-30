@@ -1,0 +1,9 @@
+apiVersion: policy/v1alpha1
+kind: PodDisruptionBudget
+metadata:
+  name: disruptme
+spec:
+  selector:
+    matchLabels:
+      name: myapp5pods
+  minAvailable: 80%
