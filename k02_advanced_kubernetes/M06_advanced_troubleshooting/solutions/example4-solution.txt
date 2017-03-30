@@ -1,0 +1,2 @@
+# assuming a minikube-based cluster
+kubectl label nodes minikube disktype=ssd
