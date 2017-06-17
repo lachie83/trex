@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: kubernetes-downwardapi-volume-example
   labels:
-    zone: us-est-coast
+    zone: us-east-coast
     cluster: test-cluster1
     rack: rack-22
   annotations:
